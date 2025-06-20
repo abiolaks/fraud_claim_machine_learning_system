@@ -84,8 +84,13 @@ def main():
             try:
                 # Correct file paths for model and preprocessor
                 st.write("Current Working Directory:", os.getcwd())
-                model = joblib.load("fraud_model.pkl")
-                preprocessor = joblib.load("fraud_preprocessor.pkl")
+                current_dir = os.path.dirname(__file__)
+                model_path = os.path.join(current_dir, "..", "fraud_model.pkl")
+                preprocessor_path = os.path.join(
+                    current_dir, "..", "fraud_preprocessor.pkl"
+                )
+                model = joblib.load(model_path)
+                preprocessor = joblib.load(preprocessor_path)
             except FileNotFoundError:
                 st.error(
                     "Model and preprocessor files not found. Please check your file paths."
